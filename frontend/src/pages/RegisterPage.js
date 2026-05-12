@@ -35,22 +35,60 @@ function RegisterPage({ setUser }) {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h1 style={styles.title}>💪 FitPro</h1>
-        <p style={styles.subtitle}>Crear Cuenta</p>
+    <div style={{
+      minHeight: '100vh',
+      background: '#0f172a',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '400px',
+        background: '#1a2847',
+        padding: '40px',
+        borderRadius: '12px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+      }}>
+        <h1 style={{ fontSize: '36px', textAlign: 'center', marginBottom: '10px', color: '#fff' }}>
+          💪 FitPro
+        </h1>
+        <p style={{ textAlign: 'center', color: '#aaa', marginBottom: '30px', fontSize: '14px' }}>
+          Crear Cuenta
+        </p>
 
-        {error && <div style={styles.error}>{error}</div>}
+        {error && (
+          <div style={{
+            background: '#dc2626',
+            color: '#fff',
+            padding: '12px',
+            borderRadius: '8px',
+            marginBottom: '20px',
+            fontSize: '14px'
+          }}>
+            {error}
+          </div>
+        )}
 
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.row}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          <div style={{ display: 'flex', gap: '10px' }}>
             <input
               type="text"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
               placeholder="Nombre"
-              style={{...styles.input, flex: 1}}
+              style={{
+                flex: 1,
+                padding: '12px',
+                borderRadius: '8px',
+                border: 'none',
+                background: '#2a3f5f',
+                color: '#fff',
+                fontSize: '14px',
+                outline: 'none'
+              }}
               required
             />
             <input
@@ -59,7 +97,16 @@ function RegisterPage({ setUser }) {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Apellido"
-              style={{...styles.input, flex: 1, marginLeft: '10px'}}
+              style={{
+                flex: 1,
+                padding: '12px',
+                borderRadius: '8px',
+                border: 'none',
+                background: '#2a3f5f',
+                color: '#fff',
+                fontSize: '14px',
+                outline: 'none'
+              }}
               required
             />
           </div>
@@ -70,7 +117,15 @@ function RegisterPage({ setUser }) {
             value={formData.email}
             onChange={handleChange}
             placeholder="tu@email.com"
-            style={styles.input}
+            style={{
+              padding: '12px',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#2a3f5f',
+              color: '#fff',
+              fontSize: '14px',
+              outline: 'none'
+            }}
             required
           />
 
@@ -80,43 +135,97 @@ function RegisterPage({ setUser }) {
             value={formData.password}
             onChange={handleChange}
             placeholder="Contraseña"
-            style={styles.input}
+            style={{
+              padding: '12px',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#2a3f5f',
+              color: '#fff',
+              fontSize: '14px',
+              outline: 'none'
+            }}
             required
           />
 
-          <div style={styles.roleSection}>
-            <label style={styles.radioLabel}>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <label style={{
+              flex: 1,
+              padding: '12px',
+              background: formData.role === 'client' ? '#2563eb' : '#2a3f5f',
+              color: '#fff',
+              borderRadius: '8px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              fontSize: '14px'
+            }}>
               <input
                 type="radio"
                 name="role"
                 value="client"
                 checked={formData.role === 'client'}
                 onChange={handleChange}
+                style={{ marginRight: '5px' }}
               />
               Cliente
             </label>
-            <label style={styles.radioLabel}>
+            <label style={{
+              flex: 1,
+              padding: '12px',
+              background: formData.role === 'trainer' ? '#2563eb' : '#2a3f5f',
+              color: '#fff',
+              borderRadius: '8px',
+              textAlign: 'center',
+              cursor: 'pointer',
+              fontSize: '14px'
+            }}>
               <input
                 type="radio"
                 name="role"
                 value="trainer"
                 checked={formData.role === 'trainer'}
                 onChange={handleChange}
+                style={{ marginRight: '5px' }}
               />
               Entrenador
             </label>
           </div>
 
-          <button type="submit" disabled={loading} style={styles.button}>
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              padding: '12px',
+              background: '#2563eb',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              marginTop: '10px'
+            }}
+          >
             {loading ? 'Registrando...' : 'Crear Cuenta'}
           </button>
         </form>
 
-        <p style={styles.divider}>¿Ya tienes cuenta?</p>
+        <p style={{ textAlign: 'center', color: '#888', margin: '20px 0', fontSize: '14px' }}>
+          ¿Ya tienes cuenta?
+        </p>
 
         <button
           onClick={() => window.location.href = '/login'}
-          style={styles.link}
+          style={{
+            width: '100%',
+            padding: '12px',
+            background: 'transparent',
+            border: '2px solid #2563eb',
+            color: '#2563eb',
+            borderRadius: '8px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer'
+          }}
         >
           Iniciar Sesión
         </button>
@@ -124,108 +233,5 @@ function RegisterPage({ setUser }) {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    background: 'linear-gradient(to br, #0f172a, #1e293b)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px',
-  },
-  card: {
-    background: 'rgba(255,255,255,0.1)',
-    backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(255,255,255,0.2)',
-    borderRadius: '20px',
-    padding: '40px',
-    width: '100%',
-    maxWidth: '400px',
-  },
-  title: {
-    fontSize: '32px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: '10px',
-    color: '#fff',
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: 'rgba(255,255,255,0.7)',
-    marginBottom: '30px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px',
-  },
-  row: {
-    display: 'flex',
-    gap: '10px',
-  },
-  input: {
-    padding: '12px',
-    borderRadius: '10px',
-    background: 'rgba(255,255,255,0.1)',
-    border: '1px solid rgba(255,255,255,0.2)',
-    color: '#fff',
-    fontSize: '14px',
-  },
-  roleSection: {
-    display: 'flex',
-    gap: '15px',
-  },
-  radioLabel: {
-    flex: 1,
-    padding: '12px',
-    background: 'rgba(255,255,255,0.1)',
-    border: '1px solid rgba(255,255,255,0.2)',
-    borderRadius: '10px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px',
-    cursor: 'pointer',
-    fontSize: '14px',
-    color: '#fff',
-  },
-  button: {
-    padding: '12px',
-    background: 'linear-gradient(to right, #2563eb, #06b6d4)',
-    color: '#fff',
-    borderRadius: '10px',
-    fontSize: '16px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    border: 'none',
-  },
-  error: {
-    background: 'rgba(239,68,68,0.2)',
-    border: '1px solid rgba(239,68,68,0.5)',
-    color: '#fca5a5',
-    padding: '12px',
-    borderRadius: '8px',
-    marginBottom: '15px',
-    fontSize: '14px',
-  },
-  divider: {
-    textAlign: 'center',
-    color: 'rgba(255,255,255,0.5)',
-    margin: '20px 0',
-    fontSize: '14px',
-  },
-  link: {
-    display: 'block',
-    width: '100%',
-    padding: '12px',
-    background: 'rgba(255,255,255,0.1)',
-    border: '2px solid rgba(255,255,255,0.3)',
-    color: '#fff',
-    borderRadius: '10px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    fontSize: '14px',
-  },
-};
 
 export default RegisterPage;
