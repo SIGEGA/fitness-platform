@@ -1,7 +1,3 @@
-
-## ARCHIVO 13: frontend/src/pages/TrainerDashboard.js
-
-```javascript
 import React from 'react';
 
 function TrainerDashboard({ user }) {
@@ -42,6 +38,3 @@ const styles = {
 };
 
 export default TrainerDashboard;
-```
-
----
