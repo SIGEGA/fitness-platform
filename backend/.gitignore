@@ -1,12 +1,6 @@
-## ARCHIVO 3: backend/.gitignore
-
-```
 node_modules/
 .env
 .DS_Store
 *.log
 build/
 dist/
-```
-
----
