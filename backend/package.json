@@ -1,6 +1,4 @@
-## ARCHIVO 1: backend/package.json
-
-```json
+json
 {
   "name": "fitness-platform-backend",
   "version": "1.0.0",
@@ -26,6 +24,3 @@
     "nodemon": "^2.0.20"
   }
 }
-```
-
----
