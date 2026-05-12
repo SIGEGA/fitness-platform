@@ -25,20 +25,57 @@ function LoginPage({ setUser }) {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h1 style={styles.title}>💪 FitPro</h1>
-        <p style={styles.subtitle}>Entrenamientos Personalizados</p>
+    <div style={{
+      minHeight: '100vh',
+      background: '#0f172a',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }}>
+      <div style={{
+        width: '100%',
+        maxWidth: '400px',
+        background: '#1a2847',
+        padding: '40px',
+        borderRadius: '12px',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
+      }}>
+        <h1 style={{ fontSize: '36px', textAlign: 'center', marginBottom: '10px', color: '#fff' }}>
+          💪 FitPro
+        </h1>
+        <p style={{ textAlign: 'center', color: '#aaa', marginBottom: '30px', fontSize: '14px' }}>
+          Entrenamientos Personalizados
+        </p>
 
-        {error && <div style={styles.error}>{error}</div>}
+        {error && (
+          <div style={{
+            background: '#dc2626',
+            color: '#fff',
+            padding: '12px',
+            borderRadius: '8px',
+            marginBottom: '20px',
+            fontSize: '14px'
+          }}>
+            {error}
+          </div>
+        )}
 
-        <form onSubmit={handleSubmit} style={styles.form}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="tu@email.com"
-            style={styles.input}
+            style={{
+              padding: '12px',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#2a3f5f',
+              color: '#fff',
+              fontSize: '14px',
+              outline: 'none'
+            }}
             required
           />
           <input
@@ -46,19 +83,53 @@ function LoginPage({ setUser }) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Contraseña"
-            style={styles.input}
+            style={{
+              padding: '12px',
+              borderRadius: '8px',
+              border: 'none',
+              background: '#2a3f5f',
+              color: '#fff',
+              fontSize: '14px',
+              outline: 'none'
+            }}
             required
           />
-          <button type="submit" disabled={loading} style={styles.button}>
+          <button
+            type="submit"
+            disabled={loading}
+            style={{
+              padding: '12px',
+              background: '#2563eb',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '16px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              marginTop: '10px'
+            }}
+          >
             {loading ? 'Iniciando...' : 'Iniciar Sesión'}
           </button>
         </form>
 
-        <p style={styles.divider}>¿No tienes cuenta?</p>
+        <p style={{ textAlign: 'center', color: '#888', margin: '20px 0', fontSize: '14px' }}>
+          ¿No tienes cuenta?
+        </p>
 
         <button
           onClick={() => window.location.href = '/register'}
-          style={styles.link}
+          style={{
+            width: '100%',
+            padding: '12px',
+            background: 'transparent',
+            border: '2px solid #2563eb',
+            color: '#2563eb',
+            borderRadius: '8px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer'
+          }}
         >
           Registrarse
         </button>
@@ -66,92 +137,5 @@ function LoginPage({ setUser }) {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    minHeight: '100vh',
-    background: 'linear-gradient(to br, #0f172a, #1e293b)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '20px',
-    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  },
-  card: {
-    background: 'rgba(255,255,255,0.1)',
-    backdropFilter: 'blur(10px)',
-    border: '1px solid rgba(255,255,255,0.2)',
-    borderRadius: '20px',
-    padding: '40px',
-    width: '100%',
-    maxWidth: '400px',
-  },
-  title: {
-    fontSize: '32px',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: '10px',
-    color: '#ffffff',
-  },
-  subtitle: {
-    textAlign: 'center',
-    color: 'rgba(255,255,255,0.7)',
-    marginBottom: '30px',
-    fontSize: '14px',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '15px',
-  },
-  input: {
-    padding: '12px',
-    borderRadius: '10px',
-    background: 'rgba(255,255,255,0.1)',
-    border: '1px solid rgba(255,255,255,0.2)',
-    color: '#ffffff',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-  },
-  button: {
-    padding: '12px',
-    background: 'linear-gradient(to right, #2563eb, #06b6d4)',
-    color: '#ffffff',
-    borderRadius: '10px',
-    fontSize: '16px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    border: 'none',
-    fontFamily: 'inherit',
-  },
-  error: {
-    background: 'rgba(239,68,68,0.2)',
-    border: '1px solid rgba(239,68,68,0.5)',
-    color: '#fca5a5',
-    padding: '12px',
-    borderRadius: '8px',
-    marginBottom: '15px',
-    fontSize: '14px',
-  },
-  divider: {
-    textAlign: 'center',
-    color: 'rgba(255,255,255,0.5)',
-    margin: '20px 0',
-    fontSize: '14px',
-  },
-  link: {
-    display: 'block',
-    width: '100%',
-    padding: '12px',
-    background: 'rgba(255,255,255,0.1)',
-    border: '2px solid rgba(255,255,255,0.3)',
-    color: '#ffffff',
-    borderRadius: '10px',
-    fontWeight: '600',
-    cursor: 'pointer',
-    fontSize: '14px',
-    fontFamily: 'inherit',
-  },
-};
 
 export default LoginPage;
