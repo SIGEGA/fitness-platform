@@ -1,7 +1,4 @@
 
-## ARCHIVO 10: frontend/src/App.js
-
-```javascript
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { authService } from './services/api';
@@ -116,6 +113,3 @@ const styles = {
 };
 
 export default App;
-```
-
----
