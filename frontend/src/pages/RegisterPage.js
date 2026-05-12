@@ -1,7 +1,3 @@
-
-## ARCHIVO 12: frontend/src/pages/RegisterPage.js
-
-```javascript
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/api';
@@ -230,6 +226,3 @@ const styles = {
 };
 
 export default RegisterPage;
-```
-
----
