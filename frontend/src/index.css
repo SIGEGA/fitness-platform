@@ -1,14 +1,1 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  background: linear-gradient(to br, #0f172a, #1e293b);
-  color: white;
-}
-
-#root {
-  min-height: 100vh;
-}
