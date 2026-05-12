@@ -58,7 +58,7 @@ function LoginPage({ setUser }) {
 
         <button
           onClick={() => window.location.href = '/register'}
-          style={{...styles.link, color: '#fff'}}
+          style={styles.link}
         >
           Registrarse
         </button>
@@ -75,6 +75,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     padding: '20px',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   },
   card: {
     background: 'rgba(255,255,255,0.1)',
@@ -90,12 +91,13 @@ const styles = {
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: '10px',
-    color: '#fff',
+    color: '#ffffff',
   },
   subtitle: {
     textAlign: 'center',
     color: 'rgba(255,255,255,0.7)',
     marginBottom: '30px',
+    fontSize: '14px',
   },
   form: {
     display: 'flex',
@@ -107,18 +109,20 @@ const styles = {
     borderRadius: '10px',
     background: 'rgba(255,255,255,0.1)',
     border: '1px solid rgba(255,255,255,0.2)',
-    color: '#fff',
+    color: '#ffffff',
     fontSize: '14px',
+    fontFamily: 'inherit',
   },
   button: {
     padding: '12px',
     background: 'linear-gradient(to right, #2563eb, #06b6d4)',
-    color: '#fff',
+    color: '#ffffff',
     borderRadius: '10px',
     fontSize: '16px',
     fontWeight: '600',
     cursor: 'pointer',
     border: 'none',
+    fontFamily: 'inherit',
   },
   error: {
     background: 'rgba(239,68,68,0.2)',
@@ -141,11 +145,12 @@ const styles = {
     padding: '12px',
     background: 'rgba(255,255,255,0.1)',
     border: '2px solid rgba(255,255,255,0.3)',
-    color: '#fff',
+    color: '#ffffff',
     borderRadius: '10px',
     fontWeight: '600',
     cursor: 'pointer',
     fontSize: '14px',
+    fontFamily: 'inherit',
   },
 };
 
