@@ -57,12 +57,9 @@ function LoginPage({ setUser }) {
         <p style={styles.divider}>¿No tienes cuenta?</p>
 
         <button
-  onClick={() => {
-    const el = document.querySelector('input[name="email"]');
-    if (el) el.value = '';
-    window.location.href = '/register';
-  }}
-  style={{...styles.link, color: '#fff'}}
+          onClick={() => window.location.href = '/register'}
+          style={{...styles.link, color: '#fff'}}
+        >
           Registrarse
         </button>
       </div>
