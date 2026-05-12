@@ -1,9 +1,3 @@
-
-## ARCHIVO 11: frontend/src/pages/LoginPage.js
-
-Crear carpeta `frontend/src/pages/` primero
-
-```javascript
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../services/api';
@@ -155,6 +149,3 @@ const styles = {
 };
 
 export default LoginPage;
-```
-
----
