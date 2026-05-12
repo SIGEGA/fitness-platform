@@ -1,6 +1,4 @@
-## ARCHIVO 5: backend/server.js
-
-```javascript
+javascript
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -59,7 +57,4 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`🚀 Backend corriendo en puerto ${PORT}`);
   console.log(`📍 Environment: ${process.env.NODE_ENV}`);
-});
-```
-
----
+})
