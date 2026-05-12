@@ -1,7 +1,3 @@
-
-## ARCHIVO 14: frontend/src/pages/ClientDashboard.js
-
-```javascript
 import React from 'react';
 
 function ClientDashboard({ user }) {
@@ -42,6 +38,3 @@ const styles = {
 };
 
 export default ClientDashboard;
-```
-
----
