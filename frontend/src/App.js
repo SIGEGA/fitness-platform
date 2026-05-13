@@ -47,7 +47,7 @@ function App() {
 
   const handleRegisterSuccess = (userData) => {
     setUser(userData);
-    setCurrentPage('dashboard');
+    setCurrentPage('login');
   };
 
   const handleLoginSuccess = (userData) => {
