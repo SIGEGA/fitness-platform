@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import { authService } from '../services/api';
 
-function RegisterPage({ setUser }) {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    role: 'client',
-  });
+function LoginPage({ setUser }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,12 +13,12 @@ function RegisterPage({ setUser }) {
     setError('');
 
     try {
-      const response = await authService.register(formData);
+      const response = await authService.login(email, password);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       setUser(response.data.user);
     } catch (err) {
-      setError(err.response?.data?.error || 'Error en el registro');
+      setError(err.response?.data?.error || 'Error en el login');
     } finally {
       setLoading(false);
     }
@@ -55,7 +45,7 @@ function RegisterPage({ setUser }) {
           💪 FitPro
         </h1>
         <p style={{ textAlign: 'center', color: '#aaa', marginBottom: '30px', fontSize: '14px' }}>
-          Crear Cuenta
+          Entrenamientos Personalizados
         </p>
 
         {error && (
@@ -72,50 +62,10 @@ function RegisterPage({ setUser }) {
         )}
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <input
-              type="text"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              placeholder="Nombre"
-              style={{
-                flex: 1,
-                padding: '12px',
-                borderRadius: '8px',
-                border: 'none',
-                background: '#2a3f5f',
-                color: '#fff',
-                fontSize: '14px',
-                outline: 'none'
-              }}
-              required
-            />
-            <input
-              type="text"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              placeholder="Apellido"
-              style={{
-                flex: 1,
-                padding: '12px',
-                borderRadius: '8px',
-                border: 'none',
-                background: '#2a3f5f',
-                color: '#fff',
-                fontSize: '14px',
-                outline: 'none'
-              }}
-              required
-            />
-          </div>
-
           <input
             type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="tu@email.com"
             style={{
               padding: '12px',
@@ -128,12 +78,10 @@ function RegisterPage({ setUser }) {
             }}
             required
           />
-
           <input
             type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Contraseña"
             style={{
               padding: '12px',
@@ -146,50 +94,6 @@ function RegisterPage({ setUser }) {
             }}
             required
           />
-
-          <div style={{ display: 'flex', gap: '10px' }}>
-            <label style={{
-              flex: 1,
-              padding: '12px',
-              background: formData.role === 'client' ? '#2563eb' : '#2a3f5f',
-              color: '#fff',
-              borderRadius: '8px',
-              textAlign: 'center',
-              cursor: 'pointer',
-              fontSize: '14px'
-            }}>
-              <input
-                type="radio"
-                name="role"
-                value="client"
-                checked={formData.role === 'client'}
-                onChange={handleChange}
-                style={{ marginRight: '5px' }}
-              />
-              Cliente
-            </label>
-            <label style={{
-              flex: 1,
-              padding: '12px',
-              background: formData.role === 'trainer' ? '#2563eb' : '#2a3f5f',
-              color: '#fff',
-              borderRadius: '8px',
-              textAlign: 'center',
-              cursor: 'pointer',
-              fontSize: '14px'
-            }}>
-              <input
-                type="radio"
-                name="role"
-                value="trainer"
-                checked={formData.role === 'trainer'}
-                onChange={handleChange}
-                style={{ marginRight: '5px' }}
-              />
-              Entrenador
-            </label>
-          </div>
-
           <button
             type="submit"
             disabled={loading}
@@ -205,16 +109,16 @@ function RegisterPage({ setUser }) {
               marginTop: '10px'
             }}
           >
-            {loading ? 'Registrando...' : 'Crear Cuenta'}
+            {loading ? 'Iniciando...' : 'Iniciar Sesión'}
           </button>
         </form>
 
         <p style={{ textAlign: 'center', color: '#888', margin: '20px 0', fontSize: '14px' }}>
-          ¿Ya tienes cuenta?
+          ¿No tienes cuenta?
         </p>
 
         <button
-          onClick={() => window.location.href = '/login'}
+          onClick={() => window.location.href = '/register'}
           style={{
             width: '100%',
             padding: '12px',
@@ -227,11 +131,11 @@ function RegisterPage({ setUser }) {
             cursor: 'pointer'
           }}
         >
-          Iniciar Sesión
+          Registrarse
         </button>
       </div>
     </div>
   );
 }
 
-export default RegisterPage;
+export default LoginPage;
