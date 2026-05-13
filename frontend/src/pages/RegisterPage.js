@@ -18,21 +18,26 @@ function RegisterPage({ setUser, setPage }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
+  e.preventDefault();
+  setLoading(true);
+  setError('');
 
-    try {
-      const response = await authService.register(formData);
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      setUser(response.data.user);
-    } catch (err) {
-      setError(err.response?.data?.error || 'Error en el registro');
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const response = await authService.register(formData);
+    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('user', JSON.stringify(response.data.user));
+    setUser(response.data.user);
+    
+    // Redirigir después de 500ms para que guarde los datos
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 500);
+  } catch (err) {
+    setError(err.response?.data?.error || 'Error en el registro');
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div style={{
