@@ -14,9 +14,15 @@ function LoginPage({ setUser, setPage }) {
 
     try {
       const response = await authService.login(email, password);
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      setUser(response.data.user);
+      
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        setPage('dashboard');
+      } else {
+        setError('Error en la respuesta del servidor');
+      }
     } catch (err) {
       setError(err.response?.data?.error || 'Error en el login');
     } finally {
@@ -99,13 +105,13 @@ function LoginPage({ setUser, setPage }) {
             disabled={loading}
             style={{
               padding: '12px',
-              background: '#2563eb',
+              background: loading ? '#888' : '#2563eb',
               color: '#fff',
               border: 'none',
               borderRadius: '8px',
               fontSize: '16px',
               fontWeight: 'bold',
-              cursor: 'pointer',
+              cursor: loading ? 'not-allowed' : 'pointer',
               marginTop: '10px'
             }}
           >
