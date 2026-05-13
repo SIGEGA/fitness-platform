@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { authService } from '../services/api';
 
-function RegisterPage({ setUser }) {
+function RegisterPage({ setUser, setPage }) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -214,7 +214,7 @@ function RegisterPage({ setUser }) {
         </p>
 
         <button
-          onClick={() => window.location.href = '/login'}
+         onClick={() => setPage('login')}
           style={{
             width: '100%',
             padding: '12px',
