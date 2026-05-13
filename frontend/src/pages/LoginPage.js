@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { authService } from '../services/api';
 
-function LoginPage({ setUser }) {
+function LoginPage({ setUser, setPage }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -118,7 +118,7 @@ function LoginPage({ setUser }) {
         </p>
 
         <button
-          onClick={() => window.location.href = '/register'}
+          onClick={() => setPage('register')}
           style={{
             width: '100%',
             padding: '12px',
