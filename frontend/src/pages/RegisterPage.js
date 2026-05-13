@@ -26,12 +26,10 @@ function RegisterPage({ setUser, setPage }) {
     const response = await authService.register(formData);
     localStorage.setItem('token', response.data.token);
     localStorage.setItem('user', JSON.stringify(response.data.user));
+    localStorage.setItem('token', response.data.token);
+    localStorage.setItem('user', JSON.stringify(response.data.user));
     setUser(response.data.user);
-    
-    // Redirigir después de 500ms para que guarde los datos
-    setTimeout(() => {
-      window.location.href = '/';
-    }, 500);
+    setPage('dashboard');
   } catch (err) {
     setError(err.response?.data?.error || 'Error en el registro');
   } finally {
