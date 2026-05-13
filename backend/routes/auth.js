@@ -1,9 +1,3 @@
-
-## ARCHIVO 10: backend/routes/auth.js
-
-Crear carpeta `backend/routes/` y crear archivo auth.js
-
-```javascript
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -28,20 +22,42 @@ const authMiddleware = (req, res, next) => {
 router.post('/register', async (req, res) => {
   try {
     const { email, password, firstName, lastName, role } = req.body;
+    
+    if (!email || !password || !firstName || !lastName || !role) {
+      return res.status(400).json({ error: 'Todos los campos son requeridos' });
+    }
+
     const existingUser = await User.findOne({ email });
+    
     if (existingUser) {
       return res.status(400).json({ error: 'El email ya está registrado' });
     }
-    const user = new User({ email, password, firstName, lastName, role });
+    
+    const user = new User({ 
+      email, 
+      password, 
+      firstName, 
+      lastName, 
+      role 
+    });
+    
     await user.save();
+    
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: '30d' }
     );
+    
     res.status(201).json({
       message: 'Usuario registrado exitosamente',
-      user: { _id: user._id, email, firstName, lastName, role },
+      user: {
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role
+      },
       token,
     });
   } catch (error) {
@@ -52,22 +68,38 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
+    
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Email y contraseña requeridos' });
+    }
+
     const user = await User.findOne({ email });
+    
     if (!user) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
+    
     const isValid = await user.comparePassword(password);
+    
     if (!isValid) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
+    
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: '30d' }
     );
+    
     res.json({
       message: 'Login exitoso',
-      user: { _id: user._id, email, firstName: user.firstName, role: user.role },
+      user: {
+        _id: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role
+      },
       token,
     });
   } catch (error) {
@@ -86,6 +118,3 @@ router.get('/verify', authMiddleware, async (req, res) => {
 
 module.exports = router;
 module.exports.authMiddleware = authMiddleware;
-```
-
----
